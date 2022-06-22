@@ -1,18 +1,18 @@
 package com.example.Cloudstorage.config;
 
 public class AuthResponse {
-    private String token;
+    private String authtoken;
 
-    public String getToken() {
-        return token;
+    public String getAuthtoken() {
+        return authtoken;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setAuthtoken(String authtoken) {
+        this.authtoken = authtoken;
     }
 
-    public AuthResponse(String token) {
-        this.token = token;
+    public AuthResponse(String authtoken) {
+        this.authtoken = authtoken;
     }
 
     /*  private String jwtToken;

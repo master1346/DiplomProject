@@ -3,6 +3,7 @@ package com.example.Cloudstorage.controller;
 import com.example.Cloudstorage.config.JWTUtil;
 import com.example.Cloudstorage.config.AuthRequest;
 import com.example.Cloudstorage.config.AuthResponse;
+import com.example.Cloudstorage.config.Login;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
@@ -16,7 +17,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 //@CrossOrigin(origins = "http://localhost:*", maxAge = 3600)
 @RestController
-@CrossOrigin
 public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -26,7 +26,8 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     @ResponseStatus(HttpStatus.OK)
-    public AuthResponse createAuthenticationToken(@RequestBody AuthRequest authRequest) {
+    public Login createAuthenticationToken(@RequestBody AuthRequest authRequest) {
+        System.out.println(authRequest);
         Authentication authentication;
         try {
             authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getLogin(), authRequest.getPassword()));
@@ -35,6 +36,6 @@ public class AuthenticationController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Имя или пароль неправильны", e);
         }
         String jwt = jwtTokenUtil.generateToken((UserDetails) authentication.getPrincipal());
-        return new AuthResponse(jwt);
+        return new Login(jwt);
     }
 }
