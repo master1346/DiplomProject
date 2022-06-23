@@ -12,8 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-//@CrossOrigin("http://localhost:8080")
+@CrossOrigin
 @RestController
+@RequestMapping("/cloud")
 public class CloudController {
 
     private final CloudRepository cloudRepository;
@@ -29,8 +30,7 @@ public class CloudController {
         this.storageService = storageService;
         this.userService = userService;
     }
-
-  /*  @GetMapping("/")
+    @GetMapping("/")
     public ResponseEntity<String> home(){
         return new ResponseEntity<>("Welcome home", HttpStatus.OK);
     }
@@ -43,6 +43,8 @@ public class CloudController {
     public String hello(){
         return ("Welcome test");
     }
+
+    /*
     @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ResponseMessage> login(@RequestBody AuthRequest user){

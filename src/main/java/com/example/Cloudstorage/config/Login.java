@@ -1,8 +1,12 @@
 package com.example.Cloudstorage.config;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Login {
+
     private String authToken;
 
+    @JsonProperty("auth-token")
     public String getAuthToken() {
         return authToken;
     }
