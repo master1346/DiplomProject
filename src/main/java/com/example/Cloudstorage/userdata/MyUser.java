@@ -1,33 +1,49 @@
 package com.example.Cloudstorage.userdata;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "my_users",
+        uniqueConstraints = {
+        @UniqueConstraint(columnNames = "username")
+        })
 public class MyUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
-    private String login;
+    private long id;
+    private String username;
     private String password;
-    private String position;
-    private String role;
 
-    public String getLogin() {
-        return login;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "roles_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public MyUser() {
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public MyUser(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
-    public String getPosition() {
-        return position;
+    public long getId() {
+        return id;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -38,22 +54,11 @@ public class MyUser {
         this.password = password;
     }
 
-
-    public long getId() {
-        return id;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
-
-
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
 }

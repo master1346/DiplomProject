@@ -1,4 +1,4 @@
-package com.example.Cloudstorage.config;
+package com.example.Cloudstorage.components;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

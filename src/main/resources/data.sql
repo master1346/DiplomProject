@@ -1,13 +1,10 @@
-#insert into authentication_data(login, password, enabled) values('1','a', '1');
-#insert into authentication_data(id, login, password) values('2','b', '2');
-#insert into authentication_data(id, login, password) values('3','c', '3');
-#insert into authentication_data(id, login, password) values('4','d', '4');
+insert into my_users(username, password) values('user', 'password');
+insert into my_users(username, password) values('admin', 'password');
+insert into my_users(username, password) values('qwe', '123');
 
-insert into users(username, password, enabled) values('user', 'pass', true);
-insert into users(username, password, enabled) values('admin', 'pass', true);
-insert into users(username, password, enabled) values('qwe', '123', true);
+insert into roles(name) values('ROLE_USER');
+insert into roles(name) values('ROLE_ADMIN');
 
-insert into authorities(authority) values( 'USER');
-
-insert into my_user(login, position, password, authority) values('user', '1', 'password', 'USER');
-insert into my_user( login, position, password, authority) values('admin', '2', 'password', 'ADMIN');
+insert into user_roles(user_id, roles_id) values('1','1');
+insert into user_roles(user_id, roles_id) values('2','2');
+insert into user_roles(user_id, roles_id) values('3','1');

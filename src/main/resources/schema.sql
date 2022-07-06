@@ -1,16 +1,22 @@
-create table users(
-    id MEDIUMINT NOT NULL AUTO_INCREMENT,
+create table my_users(
+    id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(256) NOT NULL ,
     password VARCHAR(256) NOT NULL ,
-    enabled BOOLEAN NOT NULL,
-    PRIMARY KEY(id)
+    roles SET('ROLE_ADMIN', 'ROLE_USER')
 );
 
-create table authorities (
-    id MEDIUMINT NOT NULL AUTO_INCREMENT,
-    authority VARCHAR(50) NOT NULL ,
-    constraint fk_authorities_users FOREIGN KEY (id) REFERENCES users(id)
+create table roles (
+    id INT NOT NULL AUTO_INCREMENT,
+    name ENUM('ROLE_ADMIN', 'ROLE_USER'),
+    PRIMARY KEY (id) ,
+    FOREIGN KEY (id) REFERENCES my_users (id)
 );
+
+create table user_roles(
+    user_id INT NOT NULL,
+    roles_id INT NOT NULL
+);
+
 
 create table files (
      id VARCHAR(256) NOT NULL,
@@ -18,11 +24,4 @@ create table files (
      type VARCHAR(256) NOT NULL,
      data LONGBLOB NOT NULL,
      PRIMARY KEY(id)
-);
-
-create table my_user(
-                        login VARCHAR(50) NOT NULL PRIMARY KEY ,
-                        password VARCHAR(50) NOT NULL ,
-                        position VARCHAR(50) NOT NULL,
-                        authority VARCHAR(50) NOT NULL
 );
