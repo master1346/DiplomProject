@@ -39,7 +39,7 @@ public class CloudController {
     @GetMapping("/file")
     public ResponseEntity<Object> downloadFile(@RequestParam("filename") String filename ){
         File fileDownload = storageService.download(filename);
-        if(fileDownload == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Error("Error input data", 400));
+        if(fileDownload == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Error("Error input data ", 400));
         storageService.deleteFile(filename);
         return ResponseEntity.status(HttpStatus.OK).body(fileDownload);
     }

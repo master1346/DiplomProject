@@ -19,7 +19,7 @@ create table user_roles(
 
 
 create table files (
-     id VARCHAR(256) NOT NULL,
+     id INT NOT NULL AUTO_INCREMENT,
      name VARCHAR(256) NOT NULL,
      type VARCHAR(256) NOT NULL,
      data LONGBLOB NOT NULL,
