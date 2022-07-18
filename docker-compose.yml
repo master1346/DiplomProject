@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+    springboot-app:
+      container_name: "cloudstorage_App"
+      image: "cloudstorage:1.0"
+      ports:
+       - 8082:8082
+      environment:
+        MYSQL_HOST: "mysql"
+        MYSQL_PORT: 3366
+        MYSQL_ROOT_PASSWORD: "root"
+        MYSQL_ROOT_USER: "root"
+        MYSQL_DB: "Cloud"
+
+
